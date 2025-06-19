@@ -20,7 +20,7 @@ hook.Add("Think", "NpcStickyToMovingProps", function()
     -- Si el script está desactivado, nos aseguramos de despegar cualquier NPC que haya quedado pegado.
     if not ENABLED:GetBool() then
         for _, npc in ipairs(ents.FindByClass("npc_*")) do
-            if not ( npc:IsNPC() and npc:Alive() ) then continue end
+            if not ( ( npc:IsNPC() or npc.IsDrGNextbot ) and npc:Alive() ) then continue end
             if npc.WasStuck then
                 local parent = npc:GetParent()
                 if IsValid(parent) then
@@ -37,7 +37,7 @@ hook.Add("Think", "NpcStickyToMovingProps", function()
     end
 
     for _, npc in ipairs(ents.FindByClass("npc_*")) do
-        if not ( npc:IsNPC() and npc:Alive() ) then continue end
+        if not ( ( npc:IsNPC() or npc.IsDrGNextbot ) and npc:Alive() ) then continue end
 
         local parent = npc:GetParent()
 
