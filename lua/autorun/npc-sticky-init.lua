@@ -19,7 +19,7 @@ local MOVEMENT_THRESHOLD_SQ = 10 -- Usamos el valor al cuadrado para evitar usar
 hook.Add("Think", "NpcStickyToMovingProps", function()
     -- Si el script está desactivado, nos aseguramos de despegar cualquier NPC que haya quedado pegado.
     if not ENABLED:GetBool() then
-        for _, npc in ents.Iterator() do
+        for _, npc in ipairs(ents.FindByClass("npc_*")) do
             if not ( npc:IsNPC() and npc:Alive() ) then continue end
             if npc.WasStuck then
                 local parent = npc:GetParent()
@@ -36,7 +36,7 @@ hook.Add("Think", "NpcStickyToMovingProps", function()
         return
     end
 
-    for _, npc in ents.Iterator() do
+    for _, npc in ipairs(ents.FindByClass("npc_*")) do
         if not ( npc:IsNPC() and npc:Alive() ) then continue end
 
         local parent = npc:GetParent()
